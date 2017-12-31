@@ -1,0 +1,22 @@
+Go to preferences of VirtualBox, add Nat Network
+Choose Nat Network
+Choose Host Only Adapter
+
+Create a new VM
+Once created, click settings and go to storage, in controller IDE choose minimaliso
+Then go to Network, choose NAT Network for Adapter1 and Host Only for Adapter 2
+
+during the installation, choose networking and enable the networks adapter 'ON"
+
+Installation destination has to be visited and clicked 'Done'
+
+change the domain from 'localhost.localdomain.com' to <your server.domain.com>
+
+Choose root user and other users
+
+After rebooting the VM, login to VM
+>type #ip a s, first ip is for local usage, second one would be for NAT and third is related to 'Host Only'
+>nmcli conn show
+if still those are not up
+>nmcli conn up enp0s3
+>nmcli conn up enp0s8
