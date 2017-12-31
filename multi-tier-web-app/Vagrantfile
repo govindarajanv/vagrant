@@ -1,0 +1,51 @@
+# encoding: utf-8
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.ssh.private_key_path = "C:/Users/vishnuch/.vagrant.d/insecure_private_key"
+  config.ssh.forward_agent = true
+  config.ssh.insert_key = false
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+  #HA Proxy
+  config.vm.define 'node-haproxy' do |m|
+    m.vm.box = 'bento/centos-7.2'
+    m.vm.hostname = 'haproxy'
+    m.vm.network 'private_network', ip: '10.1.1.30'
+    m.vm.provision :shell, inline: NODE_SCRIPT.dup
+    m.vm.network :forwarded_port, guest: 80, host: 8082
+    m.vm.network :forwarded_port, guest: 22, host: 2222
+    set_hostname(m)
+  end
+  #HTTP Server
+  config.vm.define 'node-web-server' do |n|
+    n.vm.box = 'bento/centos-7.2'
+    n.vm.hostname = 'web-server'
+    n.vm.network 'private_network', ip: '10.1.1.31'
+    n.vm.provision :shell, inline: NODE_SCRIPT.dup
+    n.vm.network :forwarded_port, guest: 80, host: 8084
+    m.vm.network :forwarded_port, guest: 22, host: 2224
+    set_hostname(n)
+  end
+  #Application Server
+  config.vm.define 'node-app-server' do |o|
+    o.vm.box = 'bento/centos-7.2'
+    o.vm.hostname = 'app-server'
+    o.vm.network 'private_network', ip: '10.1.1.32'
+    o.vm.provision :shell, inline: NODE_SCRIPT.dup
+    o.vm.network :forwarded_port, guest: 80, host: 8086
+    o.vm.network :forwarded_port, guest: 22, host: 2226
+    set_hostname(n)
+  end
+  #DB Server
+  config.vm.define 'node-db-server' do |o|
+    o.vm.box = 'bento/centos-7.2'
+    o.vm.hostname = 'db-server'
+    o.vm.network 'private_network', ip: '10.1.1.33'
+    o.vm.provision :shell, inline: NODE_SCRIPT.dup
+    o.vm.network :forwarded_port, guest: 80, host: 8088
+    o.vm.network :forwarded_port, guest: 22, host: 2228
+    set_hostname(n)
+  end
+end
