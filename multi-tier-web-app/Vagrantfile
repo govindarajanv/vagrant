@@ -39,13 +39,13 @@ Vagrant.configure(2) do |config|
     set_hostname(n)
   end
   #DB Server
-  config.vm.define 'node-db-server' do |o|
-    o.vm.box = 'bento/centos-7.2'
-    o.vm.hostname = 'db-server'
-    o.vm.network 'private_network', ip: '10.1.1.33'
-    o.vm.provision :shell, inline: NODE_SCRIPT.dup
-    o.vm.network :forwarded_port, guest: 80, host: 8088
-    o.vm.network :forwarded_port, guest: 22, host: 2228
+  config.vm.define 'node-db-server' do |p|
+    p.vm.box = 'bento/centos-7.2'
+    p.vm.hostname = 'db-server'
+    p.vm.network 'private_network', ip: '10.1.1.33'
+    p.vm.provision :shell, inline: NODE_SCRIPT.dup
+    p.vm.network :forwarded_port, guest: 80, host: 8088
+    p.vm.network :forwarded_port, guest: 22, host: 2228
     set_hostname(n)
   end
 end
