@@ -1,3 +1,6 @@
+Draft Steps:
+============
+
 Go to preferences of VirtualBox, add Nat Network
 Choose Nat Network
 Choose Host Only Adapter
