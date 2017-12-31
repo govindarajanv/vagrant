@@ -36,7 +36,7 @@ Vagrant.configure(2) do |config|
     o.vm.provision :shell, inline: NODE_SCRIPT.dup
     o.vm.network :forwarded_port, guest: 80, host: 8086
     o.vm.network :forwarded_port, guest: 22, host: 2226
-    set_hostname(n)
+    set_hostname(o)
   end
   #DB Server
   config.vm.define 'node-db-server' do |p|
@@ -46,6 +46,6 @@ Vagrant.configure(2) do |config|
     p.vm.provision :shell, inline: NODE_SCRIPT.dup
     p.vm.network :forwarded_port, guest: 80, host: 8088
     p.vm.network :forwarded_port, guest: 22, host: 2228
-    set_hostname(n)
+    set_hostname(p)
   end
 end
