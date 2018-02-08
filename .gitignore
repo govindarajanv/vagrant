@@ -56,4 +56,4 @@ kitchen-tests/vendor
 # Visual Studio Code files
 .vscode
 #ignore secrets
-**secrets1
+**secrets
