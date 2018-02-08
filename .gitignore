@@ -57,4 +57,4 @@ kitchen-tests/vendor
 # Visual Studio Code files
 .vscode
 # chef server secrets
-secrets/
+*/*/secrets/
