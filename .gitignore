@@ -36,7 +36,6 @@ doc/
 .kitchen/
 
 # Vagrant
-Vagrantfile
 .vagrant/
 
 # Kitchen Tests Local Mode Data
@@ -56,3 +55,4 @@ kitchen-tests/vendor
 
 # Visual Studio Code files
 .vscode
+#ignore secrets
