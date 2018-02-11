@@ -18,7 +18,7 @@ Vagrant.configure(2) do |config|
     m.vm.hostname = 'haproxy'
     m.vm.network 'private_network', ip: '10.1.1.30'
     m.vm.network :forwarded_port, guest: 80, host: 8082
-    m.vm.network :forwarded_port, guest: 22, host: 2222
+    m.vm.network :forwarded_port, guest: 22, host: 2262
     m.vm.provision :shell, inline: NODE_SCRIPT.dup
     set_hostname(m)
   end
@@ -83,7 +83,7 @@ yum -y install ntp
 systemctl start ntpd
 systemctl enable ntpd
 
-echo "10.1.1.33 chef-server.test" | tee -a /etc/hosts
+echo "10.1.1.35 chef-server" | tee -a /etc/hosts
 EOF
 
 end
