@@ -16,7 +16,7 @@ service ntp start
 # download the Chef server package
 echo "Downloading the Chef server package..."
 if [ ! -f /downloads/chef-server-core_12.11.1_amd64.deb ]; then
-  wget -nv -P /downloads https://packages.chef.io/files/stable/chef-server/12.11.1/ubuntu/14.04/chef-server-core_12.11.1-1_amd64.deb
+  wget -nv -P /downloads https://packages.chef.io/files/stable/chef-server/12.17.15/el/7/chef-server-core-12.17.15-1.el7.x86_64.rpm
 fi
 
 # install the package
